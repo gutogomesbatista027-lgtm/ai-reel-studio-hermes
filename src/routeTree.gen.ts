@@ -10,33 +10,57 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicTelegramIngestRouteImport } from './routes/api/public/telegram-ingest'
+import { Route as ApiPublicWorkerCallbackRouteImport } from './routes/api/public/worker-callback'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicTelegramIngestRoute = ApiPublicTelegramIngestRouteImport.update({
+  id: '/api/public/telegram-ingest',
+  path: '/api/public/telegram-ingest',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicWorkerCallbackRoute = ApiPublicWorkerCallbackRouteImport.update({
+  id: '/api/public/worker-callback',
+  path: '/api/public/worker-callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/telegram-ingest': typeof ApiPublicTelegramIngestRoute
+  '/api/public/worker-callback': typeof ApiPublicWorkerCallbackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/telegram-ingest': typeof ApiPublicTelegramIngestRoute
+  '/api/public/worker-callback': typeof ApiPublicWorkerCallbackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/telegram-ingest': typeof ApiPublicTelegramIngestRoute
+  '/api/public/worker-callback': typeof ApiPublicWorkerCallbackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/api/public/telegram-ingest' | '/api/public/worker-callback'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/public/telegram-ingest' | '/api/public/worker-callback'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/public/telegram-ingest'
+    | '/api/public/worker-callback'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicTelegramIngestRoute: typeof ApiPublicTelegramIngestRoute
+  ApiPublicWorkerCallbackRoute: typeof ApiPublicWorkerCallbackRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +72,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/telegram-ingest': {
+      id: '/api/public/telegram-ingest'
+      path: '/api/public/telegram-ingest'
+      fullPath: '/api/public/telegram-ingest'
+      preLoaderRoute: typeof ApiPublicTelegramIngestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/worker-callback': {
+      id: '/api/public/worker-callback'
+      path: '/api/public/worker-callback'
+      fullPath: '/api/public/worker-callback'
+      preLoaderRoute: typeof ApiPublicWorkerCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicTelegramIngestRoute: ApiPublicTelegramIngestRoute,
+  ApiPublicWorkerCallbackRoute: ApiPublicWorkerCallbackRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
