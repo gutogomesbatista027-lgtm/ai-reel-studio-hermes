@@ -12,7 +12,7 @@ import { dispatchJob } from "@/lib/jobs.functions";
 import { JOB_STATUS, formatDateTime } from "@/lib/studio";
 
 export const Route = createFileRoute("/_authenticated/director")({
-  validateSearch: (s: Record<string, unknown>) => ({ project: typeof s.project === "string" ? s.project : undefined }),
+  validateSearch: (s: Record<string, unknown>): { project?: string } => ({ project: typeof s.project === "string" ? s.project : undefined }),
   head: () => ({ meta: [{ title: "Diretor IA — AI Reel Studio" }, { name: "description", content: "Peça ao Hermes um plano de edição." }] }),
   component: Director,
 });
