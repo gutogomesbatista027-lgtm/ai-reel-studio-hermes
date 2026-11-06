@@ -16,7 +16,7 @@ import {
 } from "@/lib/studio";
 
 export const Route = createFileRoute("/_authenticated/studio")({
-  validateSearch: (s: Record<string, unknown>) => ({ id: typeof s.id === "string" ? s.id : undefined }),
+  validateSearch: (s: Record<string, unknown>): { id?: string } => ({ id: typeof s.id === "string" ? s.id : undefined }),
   head: () => ({ meta: [{ title: "Estúdio de edição — AI Reel Studio" }, { name: "description", content: "Configure cada detalhe da sua edição." }] }),
   component: Studio,
 });
