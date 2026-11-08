@@ -37,7 +37,8 @@ const pagesCorsMiddleware = createMiddleware().server(async ({ request, next }) 
   const headers = new Headers({
     "Access-Control-Allow-Origin": origin ?? "",
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept, X-TSS-Serialized, X-TSS-Raw, X-TSR-Redirect",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept, X-TSS-Serialized, X-TSS-Raw, X-TSS-Context, X-TSR-Redirect, X-TSR-ServerFn",
+    "Access-Control-Expose-Headers": "X-TSS-Serialized, X-TSS-Raw, X-TSR-Redirect",
     Vary: "Origin",
   });
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers });

@@ -14,7 +14,9 @@ export const Route = createFileRoute("/_authenticated/integrations")({
 function Integrations() {
   const fn = useServerFn(getIntegrationStatus);
   const { data, isLoading } = useQuery({ queryKey: ["integration-status"], queryFn: () => fn() });
-  const origin = typeof window !== "undefined" ? window.location.origin : "";
+  const origin = import.meta.env.VITE_GITHUB_PAGES === "true"
+    ? import.meta.env.VITE_SERVER_ORIGIN
+    : typeof window !== "undefined" ? window.location.origin : "";
 
   const card = (icon: React.ReactNode, title: string, desc: string, ok: boolean, last?: { created_at: string } | null, note?: string) => (
     <Panel>
