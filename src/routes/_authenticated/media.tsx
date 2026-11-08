@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { studioHead } from "@/lib/page-head";
 import { Library } from "lucide-react";
 import { PageHeader, Panel, EmptyState, StatusPill } from "@/components/studio/ui";
 import { useAssets, useProjects } from "@/lib/data";
 import { formatBytes, formatDate, formatDuration, type Tone } from "@/lib/studio";
 
 export const Route = createFileRoute("/_authenticated/media")({
-  head: () => ({ meta: [{ title: "Biblioteca de mídia — AI Reel Studio" }, { name: "description", content: "Vídeos recebidos pelo Telegram." }] }),
+  head: () => studioHead("Biblioteca de mídia — AI Reel Studio", "Vídeos recebidos pelo Telegram."),
   component: Media,
 });
 

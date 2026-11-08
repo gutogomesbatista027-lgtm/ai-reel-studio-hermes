@@ -9,6 +9,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Envie vídeos e música pelo Telegram e deixe a IA dirigir, sincronizar com a batida e renderizar seus Reels." },
       { property: "og:title", content: "AI Reel Studio — Direção criativa por IA" },
       { property: "og:description", content: "Envie vídeos e música e deixe a IA dirigir e sincronizar seus Reels." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Landing,

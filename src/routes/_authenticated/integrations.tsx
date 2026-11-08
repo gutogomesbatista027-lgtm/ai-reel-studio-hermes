@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { studioHead } from "@/lib/page-head";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Send, Bot, Server, KeyRound } from "lucide-react";
@@ -7,14 +8,16 @@ import { getIntegrationStatus } from "@/lib/jobs.functions";
 import { formatDateTime } from "@/lib/studio";
 
 export const Route = createFileRoute("/_authenticated/integrations")({
-  head: () => ({ meta: [{ title: "Integrações — AI Reel Studio" }, { name: "description", content: "Status do Telegram, Hermes e worker." }] }),
+  head: () => studioHead("Integrações — AI Reel Studio", "Status do Telegram, Hermes e worker."),
   component: Integrations,
 });
 
 function Integrations() {
   const fn = useServerFn(getIntegrationStatus);
   const { data, isLoading } = useQuery({ queryKey: ["integration-status"], queryFn: () => fn() });
-  const origin = typeof window !== "undefined" ? window.location.origin : "";
+  const origin = import.meta.env.VITE_GITHUB_PAGES === "true"
+    ? import.meta.env.VITE_SERVER_ORIGIN
+    : typeof window !== "undefined" ? window.location.origin : "";
 
   const card = (icon: React.ReactNode, title: string, desc: string, ok: boolean, last?: { created_at: string } | null, note?: string) => (
     <Panel>

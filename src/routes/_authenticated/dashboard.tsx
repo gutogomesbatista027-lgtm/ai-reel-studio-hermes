@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { studioHead } from "@/lib/page-head";
 import { FolderKanban, CheckCircle2, Clock, Loader2, AlertTriangle, Video, Timer, Plus, Film } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -7,7 +8,7 @@ import { useProjects, useAssets, useJobs, useRenders, useLiveJobs, useDemoMode, 
 import { PROJECT_STATUS, JOB_STATUS, JOB_TYPES, STYLES, formatDate, formatDateTime, formatDuration } from "@/lib/studio";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
-  head: () => ({ meta: [{ title: "Dashboard — AI Reel Studio" }, { name: "description", content: "Visão geral dos seus projetos e renders." }] }),
+  head: () => studioHead("Dashboard — AI Reel Studio", "Visão geral dos seus projetos e renders."),
   component: Dashboard,
 });
 

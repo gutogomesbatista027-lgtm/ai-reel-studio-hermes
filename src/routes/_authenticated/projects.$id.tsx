@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { studioHead } from "@/lib/page-head";
 import { useQuery } from "@tanstack/react-query";
 import { Pencil, Sparkles, Copy } from "lucide-react";
 import { toast } from "sonner";
@@ -10,7 +11,7 @@ import { useProject, useAssets, useMusic, usePlans, useRenders, useJobs, useLive
 import { PROJECT_STATUS, JOB_STATUS, JOB_TYPES, STYLES, PACES, NARRATIVES, formatBytes, formatDate, formatDateTime, formatDuration } from "@/lib/studio";
 
 export const Route = createFileRoute("/_authenticated/projects/$id")({
-  head: () => ({ meta: [{ title: "Projeto — AI Reel Studio" }, { name: "description", content: "Detalhes do projeto." }] }),
+  head: () => studioHead("Projeto — AI Reel Studio", "Detalhes do projeto."),
   component: ProjectDetail,
 });
 

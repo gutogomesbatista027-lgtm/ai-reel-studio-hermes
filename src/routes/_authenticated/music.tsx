@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { studioHead } from "@/lib/page-head";
 import { useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { Music2 } from "lucide-react";
@@ -12,7 +13,7 @@ import { dispatchJob } from "@/lib/jobs.functions";
 import { formatDuration } from "@/lib/studio";
 
 export const Route = createFileRoute("/_authenticated/music")({
-  head: () => ({ meta: [{ title: "Estúdio musical — AI Reel Studio" }, { name: "description", content: "BPM, batidas e energia das suas músicas." }] }),
+  head: () => studioHead("Estúdio musical — AI Reel Studio", "BPM, batidas e energia das suas músicas."),
   component: Music,
 });
 

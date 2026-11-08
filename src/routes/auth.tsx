@@ -14,6 +14,8 @@ export const Route = createFileRoute("/auth")({
       { name: "description", content: "Acesse seu estúdio pessoal de edição com IA." },
       { property: "og:title", content: "Entrar — AI Reel Studio" },
       { property: "og:description", content: "Acesse seu estúdio pessoal de edição com IA." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: AuthPage,

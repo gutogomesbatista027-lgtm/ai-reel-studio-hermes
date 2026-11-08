@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { studioHead } from "@/lib/page-head";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -13,7 +14,7 @@ import { useEditingProfiles } from "@/lib/data";
 import { STYLES, PACES, COLOR_PROFILES } from "@/lib/studio";
 
 export const Route = createFileRoute("/_authenticated/profiles")({
-  head: () => ({ meta: [{ title: "Perfis de edição — AI Reel Studio" }, { name: "description", content: "Seus presets pessoais de edição." }] }),
+  head: () => studioHead("Perfis de edição — AI Reel Studio", "Seus presets pessoais de edição."),
   component: Profiles,
 });
 
