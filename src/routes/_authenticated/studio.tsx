@@ -1,4 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { studioHead } from "@/lib/page-head";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -17,7 +18,7 @@ import {
 
 export const Route = createFileRoute("/_authenticated/studio")({
   validateSearch: (s: Record<string, unknown>): { id?: string } => ({ id: typeof s.id === "string" ? s.id : undefined }),
-  head: () => ({ meta: [{ title: "Estúdio de edição — AI Reel Studio" }, { name: "description", content: "Configure cada detalhe da sua edição." }] }),
+  head: () => studioHead("Estúdio de edição — AI Reel Studio", "Configure cada detalhe da sua edição."),
   component: Studio,
 });
 

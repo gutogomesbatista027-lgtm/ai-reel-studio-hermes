@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { studioHead } from "@/lib/page-head";
 import { useServerFn } from "@tanstack/react-start";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
@@ -14,7 +15,7 @@ import { dispatchJob } from "@/lib/jobs.functions";
 import { formatDate, formatDuration } from "@/lib/studio";
 
 export const Route = createFileRoute("/_authenticated/timeline")({
-  head: () => ({ meta: [{ title: "Timeline & Preview — AI Reel Studio" }, { name: "description", content: "Veja o plano de edição e os renders." }] }),
+  head: () => studioHead("Timeline & Preview — AI Reel Studio", "Veja o plano de edição e os renders."),
   component: Timeline,
 });
 

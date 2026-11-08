@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { studioHead } from "@/lib/page-head";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -13,7 +14,7 @@ import { JOB_STATUS, formatDateTime } from "@/lib/studio";
 
 export const Route = createFileRoute("/_authenticated/director")({
   validateSearch: (s: Record<string, unknown>): { project?: string } => ({ project: typeof s.project === "string" ? s.project : undefined }),
-  head: () => ({ meta: [{ title: "Diretor IA — AI Reel Studio" }, { name: "description", content: "Peça ao Hermes um plano de edição." }] }),
+  head: () => studioHead("Diretor IA — AI Reel Studio", "Peça ao Hermes um plano de edição."),
   component: Director,
 });
 

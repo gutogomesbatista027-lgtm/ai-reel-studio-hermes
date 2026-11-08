@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { studioHead } from "@/lib/page-head";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -11,7 +12,7 @@ import { PageHeader, Panel, DemoBadge } from "@/components/studio/ui";
 import { useDemoMode } from "@/lib/data";
 
 export const Route = createFileRoute("/_authenticated/settings")({
-  head: () => ({ meta: [{ title: "Configurações — AI Reel Studio" }, { name: "description", content: "Perfil e preferências." }] }),
+  head: () => studioHead("Configurações — AI Reel Studio", "Perfil e preferências."),
   component: Settings,
 });
 

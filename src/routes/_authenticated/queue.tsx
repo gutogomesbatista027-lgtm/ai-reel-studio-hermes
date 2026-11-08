@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { studioHead } from "@/lib/page-head";
 import { useServerFn } from "@tanstack/react-start";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -11,7 +12,7 @@ import { retryJob, cancelJob } from "@/lib/jobs.functions";
 import { JOB_STATUS, JOB_TYPES, formatDateTime } from "@/lib/studio";
 
 export const Route = createFileRoute("/_authenticated/queue")({
-  head: () => ({ meta: [{ title: "Fila de processamento — AI Reel Studio" }, { name: "description", content: "Acompanhe jobs em tempo real." }] }),
+  head: () => studioHead("Fila de processamento — AI Reel Studio", "Acompanhe jobs em tempo real."),
   component: Queue,
 });
 
