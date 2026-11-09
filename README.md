@@ -49,5 +49,7 @@ No worker credentials or server bundle are uploaded to Pages.
 Pages links use TanStack hash history: `https://your-account.github.io/repo/#/dashboard`.
 This supports refresh without a 404 rewrite. Lovable URLs are unchanged.
 The build uploads only static files. Git sync alone does not activate Pages;
+The Pages build uses a temporary render-capable server to generate the SPA shell;
+that server is not uploaded, and private pages are not prerendered.
 the GitHub Actions result must confirm deployment before the address is live.
 Media processing still requires the external worker to be configured.
