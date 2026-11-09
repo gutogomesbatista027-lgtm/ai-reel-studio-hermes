@@ -10,7 +10,7 @@ async function configFor(pages: boolean) {
   vi.stubEnv("GITHUB_PAGES", pages ? "true" : "false");
   const { default: config } = await import("../../vite.config");
   return config as unknown as {
-    nitro?: { preset: string; prerender: { routes: string[]; crawlLinks: boolean } };
+    nitro?: { preset: string };
     tanstackStart: {
       spa?: { enabled: boolean };
       prerender?: { autoStaticPathsDiscovery: boolean; crawlLinks: boolean };
@@ -31,8 +31,6 @@ describe("Pages build configuration", () => {
     const config = await configFor(true);
     expect(config.tanstackStart.prerender?.autoStaticPathsDiscovery).toBe(false);
     expect(config.tanstackStart.prerender?.crawlLinks).toBe(false);
-    expect(config.nitro?.prerender.routes).toEqual([]);
-    expect(config.nitro?.prerender.crawlLinks).toBe(false);
   });
 
   it("leaves normal hosting on the platform default", async () => {

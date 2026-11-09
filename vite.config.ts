@@ -15,7 +15,7 @@ export default defineConfig({
     // CI needs a render-capable entry to generate TanStack's SPA shell.
     // Nitro's static preset has no SSR entry and fails under Vite 8.
     // prepare-pages.ts excludes this build-time server from the Pages upload.
-    nitro: { preset: "node-server", prerender: { routes: [], crawlLinks: false } },
+    nitro: { preset: "node-server" },
   } : {}),
   tanstackStart: {
     ...(pages ? {
