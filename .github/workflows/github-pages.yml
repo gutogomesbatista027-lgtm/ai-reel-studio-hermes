@@ -29,7 +29,7 @@ jobs:
             exit 1
           fi
       - run: bun install --frozen-lockfile
-      - run: bunx vitest run src/lib/pages-hosting.test.ts src/test/app-routing.test.tsx
+      - run: bunx vitest run src/lib/pages-hosting.test.ts src/test/app-routing.test.tsx src/test/pages-build-config.test.ts
       - name: Build static app
         run: bun run build
         env:

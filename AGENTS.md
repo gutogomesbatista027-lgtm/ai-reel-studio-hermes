@@ -15,5 +15,5 @@
 - App reads use the browser client under RLS; actions that reach the worker go through server functions in src/lib/jobs.functions.ts — worker credentials stay server-side.
 - Pages is an opt-in static SPA build with TanStack hash history; normal hosting keeps path history because only Pages lacks server execution and deep-link rewrites.
 - Pages RPCs use Start custom fetch to a matching published app with exact-origin CORS/CSRF and existing bearer authentication; credentials remain server-side.
-- GitHub Actions uploads only static shell/public assets; static frontend and server deployments must use matching source versions to preserve generated RPC IDs.
+- Pages CI uses a render-capable Node build entry solely to generate the SPA shell, with route discovery disabled; GitHub Actions uploads only public assets and excludes that server. Static frontend and published server must use matching source versions to preserve generated RPC IDs.
 - Content routes use shared studioHead metadata where appropriate to keep unique titles, descriptions and social tags complete.

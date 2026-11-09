@@ -12,10 +12,17 @@ const pagesBase = process.env["PAGES_BASE_PATH"] || "/";
 export default defineConfig({
   ...(pages ? {
     vite: { base: pagesBase, define: { "import.meta.env.VITE_GITHUB_PAGES": JSON.stringify("true") } },
-    nitro: { preset: "static" },
+    // CI needs a render-capable entry to generate TanStack's SPA shell.
+    // Nitro's static preset has no SSR entry and fails under Vite 8.
+    // prepare-pages.ts excludes this build-time server from the Pages upload.
+    nitro: { preset: "node-server" },
   } : {}),
   tanstackStart: {
-    ...(pages ? { router: { basepath: "/" }, spa: { enabled: true }, prerender: { enabled: true, crawlLinks: false } } : {}),
+    ...(pages ? {
+      router: { basepath: "/" },
+      spa: { enabled: true },
+      prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false },
+    } : {}),
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
