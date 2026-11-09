@@ -1,4 +1,5 @@
 # GitHub Pages
+- [ ] Correct the static app build failure reported by GitHub Actions.
 - [x] Prepare static publication using the existing TanStack app and current Cloud database.
 - [x] Preserve server-backed actions without exposing worker credentials.
 - [x] Add GitHub Actions deployment and document required GitHub settings.
