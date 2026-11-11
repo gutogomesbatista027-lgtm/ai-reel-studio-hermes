@@ -11,6 +11,10 @@ for (const candidate of [".output/public", "dist/client"]) {
   } catch { /* Try the next supported output location. */ }
 }
 if (!publicDir) throw new Error("Static SPA shell not found; deployment stopped.");
+const shell = await readFile(resolve(publicDir, "_shell.html"), "utf8");
+if (shell.length < 200 || !shell.includes("<script") || /Internal Server Error/i.test(shell)) {
+  throw new Error("Start page is empty or an error page; deployment stopped.");
+}
 await mkdir("dist-pages", { recursive: true });
 await cp(publicDir, "dist-pages", { recursive: true });
 await writeFile("dist-pages/index.html", await readFile(resolve(publicDir, "_shell.html"), "utf8"));
