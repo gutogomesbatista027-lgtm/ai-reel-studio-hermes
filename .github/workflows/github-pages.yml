@@ -13,6 +13,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
@@ -32,6 +33,7 @@ jobs:
       - run: bunx vitest run src/lib/pages-hosting.test.ts src/test/app-routing.test.tsx src/test/pages-build-config.test.ts
       - name: Build static app
         run: bun run build
+        timeout-minutes: 15
         env:
           GITHUB_PAGES: 'true'
           PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}/

@@ -13,6 +13,7 @@ async function configFor(pages: boolean) {
     nitro?: { preset: string };
     tanstackStart: {
       spa?: { enabled: boolean };
+      server?: { entry: string };
       prerender?: { autoStaticPathsDiscovery: boolean; crawlLinks: boolean };
     };
   };
@@ -31,6 +32,11 @@ describe("Pages build configuration", () => {
     const config = await configFor(true);
     expect(config.tanstackStart.prerender?.autoStaticPathsDiscovery).toBe(false);
     expect(config.tanstackStart.prerender?.crawlLinks).toBe(false);
+  });
+
+  it("uses the standard server entry so the start page can be generated", async () => {
+    expect((await configFor(true)).tanstackStart.server).toBeUndefined();
+    expect((await configFor(false)).tanstackStart.server?.entry).toBe("server");
   });
 
   it("leaves normal hosting on the platform default", async () => {
